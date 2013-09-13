@@ -1,0 +1,16 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>
+    {% block pageTitle %}
+    HW1: UI Experiment
+    {% endblock pageTitle %}
+  </title>
+
+  {% block head %}{% endblock head %}
+</head>
+<body>
+cs279 hw1. Your session ID is {{ request.session.sessionId }}. 
+</body>
+</html>
+
