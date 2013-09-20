@@ -1,0 +1,95 @@
+html, body {
+  margin: 0px;
+  overflow: hidden;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+}
+
+#sidebar {
+  width: 9.75%;
+  height: 2000px;
+  background-color: #B3B3B3;
+  border-left: 1px solid black;
+  float: right;
+  text-align: center;
+  padding-top: 5px;
+}
+
+#instructions, #preference {
+  font-size: 48pt;
+  text-align: center;
+  margin: 30px;
+}
+
+#preference a {
+    text-decoration: none;
+}
+
+#preference img {
+  border: 1px solid black;
+  width: 35%;
+  margin: 10px;
+}
+
+#preference-options {
+  display: inline;
+}
+
+
+#preference h5 {
+  font-size: 20pt;
+}
+
+#sidebar img {
+  padding: 10px;
+  background-color: #878787;
+}
+
+.target-text {
+  font-family: 'Arial Narrow';
+  font-size: 18pt;
+}
+
+.imagemap {
+  width: 90%;
+}
+
+#bottomClincher {
+  position: fixed;
+  bottom: 0%;
+  left: 26%;
+  margin: 10px;
+}
+
+#bottomClincher #next {
+  text-align: center;
+  display: none;
+}
+
+#bottomClincher #next a {
+  text-decoration: none;
+  padding: 10px;
+  background-color: #B3B3B3;
+  border: 1px solid black;
+  font-size: 30pt;
+  display: block;
+  color: black;
+}
+
+#bottomClincher #next a:hover {
+  background-color: #878787;
+}
+
+/** Displayed when user gets icon right. */
+#goodJob {
+  font-size: 300%;
+  margin-top: 100px;
+  text-align: center;
+  width: 100%;
+}
+
+/** Hide the form for moving on to next trial. */
+.moveOnForm {
+  visibility: hidden;
+}
+

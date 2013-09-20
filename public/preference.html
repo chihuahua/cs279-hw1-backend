@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+	<title>CS 279: Homework 2 -- Interface Instructions</title>
+	<link rel="stylesheet" type="text/css" href="css/stylesheet.css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+
+<script>
+
+$(document).ready(function() {
+
+	$("#rib").click(function() {
+		$('#rib').css({ "border": "10px solid red", "margin" : "0px" });
+		$('#cmd').css({ "border": "1px solid black", "margin" : "10px" });
+	});
+
+	$("#cmd").click(function() {
+		$('#cmd').css({ "border": "10px solid red", "margin" : "0px" });
+		$('#rib').css({ "border": "1px solid black", "margin" : "10px" });
+
+	});
+
+});
+
+</script>
+
+</head>
+
+
+<body>
+
+	<section id = "preference">
+
+	Which interface did you prefer overall?
+
+	<br/><br/>
+
+	<div id = "preference-options">
+
+			<a href ="#"> <img id = "rib" src = "images/ribbon-thumb.png"/> </a>
+
+			<a href = "#"> <img id = "cmd" src = "images/commandmaps-thumb.png"/> </a>
+
+	</div>
+
+	</section>
+
+	<section id ="next">
+	<a href= "ribbon.html"> Next &#x25B6; </a>
+	</section>
+
+
+</body>
+
+
+</html>
+

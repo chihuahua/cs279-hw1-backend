@@ -1,0 +1,15 @@
+{% extends 'structures/base.html' %}
+
+{% block content  %}
+
+<h1>{{ section.title }}</h1>
+
+<p>
+  {{ section.instructions }}
+</p>
+
+<a href='{% url study2.views.beginSession %}'>
+  Begin
+</a>
+
+{% endblock content %}

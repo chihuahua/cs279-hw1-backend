@@ -1,0 +1,15 @@
+{% extends 'structures/base.html' %}
+
+{% block content  %}
+
+<h1>Evaluating your Experience</h1>
+
+<p>
+  You've just extensively used an interface to accomplish some tasks. Now, please answer some questions that ask you to look back on the experience.
+</p>
+
+<a href='{% url study2.views.questionnaire %}'>
+  Begin
+</a>
+
+{% endblock content %}

@@ -7,10 +7,15 @@
     {% endblock pageTitle %}
   </title>
 
-  {% block head %}{% endblock head %}
+  <link rel="stylesheet" type="text/css" href="/css/stylesheet.css" />  
+  <script src="/javascripts/jquery-1.7.1.min.js"></script>
+  {% block head %}
+  {% endblock head %}
 </head>
 <body>
+{% block content %}
 cs279 hw1. Your session ID is {{ request.session.sessionId }}. 
+{% endblock content %}
 </body>
 </html>
 

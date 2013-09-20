@@ -1,2 +1,23 @@
 {% extends 'structures/base.html' %}
 
+{% block head %}
+<link rel="stylesheet" type="text/css" href="/css/static.css" />
+{% endblock head %}
+
+{% block content  %}
+
+<h1>UI Testing.</h1>
+
+<p>
+  This study aims to test the effectiveness of two different user interfaces for Microsoft Word.
+</p>
+
+<p>
+  You will be presented with 2 different interfaces. For each interface, you will be first asked to do 30 tasks to familiarize yourself with the interface. Then, you will be asked to do 90 other tasks using the same interface for which we will evaluate your performance.
+</p>
+
+<a href='{% url study2.views.consent %}'>
+  Begin
+</a>
+
+{% endblock content %}

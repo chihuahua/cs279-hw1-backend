@@ -1,0 +1,62 @@
+{% extends 'structures/base.html' %}
+
+{% block head %}
+
+<link rel="stylesheet" type="text/css" href="/css/stylesheet.css" />
+<script>
+
+$(document).ready(function() {
+
+	$("#rib").click(function() {
+		$('#rib').css({ "border": "10px solid red", "margin" : "0px" });
+		$('#cmd').css({ "border": "1px solid black", "margin" : "10px" });
+	});
+
+	$("#cmd").click(function() {
+		$('#cmd').css({ "border": "10px solid red", "margin" : "0px" });
+		$('#rib').css({ "border": "1px solid black", "margin" : "10px" });
+
+	});
+	
+	// Record preference.
+	$('#preference-options').on('click', 'a', function(e) {
+	  e.preventDefault();
+	  var self = $(this);
+	  var preference = self.attr('id');
+	  
+	  var form = $('<form class="moveOnForm" action="{% url study2.views.choseBetweenUis %}" method="post">');
+	  form.append('<input type="text" name="preferredUi" value="' + preference + '">');
+	  form.append("{% csrf_token %}");
+	  
+	  form.appendTo("body").submit();
+	});
+});
+
+</script>
+
+{% endblock head %}
+
+{% block content  %}
+
+	<section id = "preference">
+
+	Which interface did you prefer overall?
+
+	<br/><br/>
+
+	<div id = "preference-options">
+
+			<a href ="#" id="ribbon"> <img id = "rib" src = "/images/ribbon-thumb.png"/> </a>
+
+			<a href = "#" id="commandMap"> <img id = "cmd" src = "/images/commandmaps-thumb.png"/> </a>
+
+	</div>
+
+	</section>
+
+	<section id ="next">
+	<a href= "ribbon.html"> Next &#x25B6; </a>
+	</section>
+
+{% endblock content %}
+

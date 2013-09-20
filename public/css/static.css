@@ -1,0 +1,12 @@
+body {
+  padding: 10px;
+}
+
+body, html {
+  overflow: auto;
+}
+
+a {
+  font-size: 200%;
+}
+

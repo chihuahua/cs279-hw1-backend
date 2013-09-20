@@ -1,0 +1,121 @@
+{% extends 'structures/base.html' %}
+
+{% block head %}
+
+<script src="/javascripts/jquery.imagemapster.js"></script>
+<script>
+
+// Names of tabs.
+var tabs = {};
+{% for tabName in tabs %}tabs['{{ tabName }}'] = true;{% endfor %}
+
+// Whether an error occurred.
+var errorCount = 0;
+
+// Beep sound.
+var beep = new Audio('/media/beep.mp3');
+
+// If task has been completed.
+var taskCompleted = false;
+
+// Begin and end times.
+var beginTime, endTime;
+
+// Command short name.
+var commandShort = '{{ command.0 }}';
+
+var currentTab = {% if currentTab %}'{{ currentTab }}'{% else %}'home'{% endif %};
+
+$(function() {
+  // Record the begin time.
+  beginTime = (new Date()).getTime();
+
+ // Register click events on the interface.
+  $('#interface').on('click', 'area', function(e) {
+      self = $(this);
+      e.preventDefault();
+      var selectedCommandShort = self.attr('alt');
+      if (!taskCompleted && commandShort == selectedCommandShort) {
+        // answered correctly! record time.
+        endTime = (new Date()).getTime();
+        taskCompleted = true;        
+
+        // display next button.
+        $('#next').css('display', 'block');
+        
+        // hide interface to prevent wrong clicks.
+        $('#interface').append($('<p id="goodJob">Good job!</p>'));
+      } else if (!tabs[selectedCommandShort] && !taskCompleted) {
+        // answered wrongly!
+        ++errorCount;
+        beep.play();
+      } else if (tabs[selectedCommandShort]) {
+        // user clicked on a tab!
+        currentTab = selectedCommandShort;
+        console.log(currentTab);
+      }
+  });
+  
+  // Function for sending data to the server.
+  function sendToServer(e) {
+    e.preventDefault();
+    var form = $("<form class='moveOnForm' method='post' action='{% url study2.views.beginSession %}'>");
+    var errorsMade = $("<input type='text' name='errorsMade' value='" + errorCount + "'>");
+    form.append(errorsMade);
+    
+    var beginTimeInput = $("<input type='text' name='beginTime' value='" + beginTime + "'>");
+    form.append(beginTimeInput);
+    
+    var endTimeInput = $("<input type='text' name='endTime' value='" + endTime + "'>");
+    form.append(endTimeInput);
+    
+    var selection = $("<input type='text' name='selection' value='" + commandShort + "'>");
+    form.append(selection);
+   
+    // Remember current tab.
+    var currentTabInput = $("<input type='text' name='currentTab' value='" + currentTab + "'>");
+    form.append(currentTabInput); 
+
+    var csrf = $("{% csrf_token %}");
+    form.append(csrf);
+    
+    console.log(beginTime, endTime, errorsMade);
+    form.appendTo("body").submit();
+  }
+  
+  // Send data to the server and load the next page.
+  $('#next a').on('click', sendToServer);
+});
+
+</script>
+
+{% endblock head %}
+
+
+{% block content %}
+
+<div id = "sidebar">
+  Select: <br/> <br/>
+
+  <img class = "target-img" src = "images/icons/{{ command.0 }}.png" /> <br/>
+  <strong class="target-text"> {{ command.1 }} </strong>
+  
+</div>
+
+<div id="interface">
+{% if session.ui %}
+  {% include 'structures/ribbon.html' %}
+{% else %}
+  {% include 'structures/commandMap.html' %}
+{% endif %}
+</div>
+
+<div id="bottomClincher">
+<section id ="next">
+<a href= "commandmaps.html"> Click here to move on. &#x25B6; </a> <br>
+</section>
+Current Task: {{ session.trialNumber }} out of {{ totalTrials }}
+</div>
+
+{% endblock content %}
+
